@@ -2,53 +2,44 @@
 <html lang="fi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gabys website v2</title>
 
-<link rel="icon"
-      href="https://cdn.dribbble.com/userupload/17064056/file/original-23909ae05b7ad399e60a61467cca821f.jpg?resize=400x0"
-      type="image/jpeg">
+<link rel="icon" href="https://cdn.dribbble.com/userupload/17064056/file/original-23909ae05b7ad399e60a61467cca821f.jpg?resize=400x0" type="image/jpeg">
 
 <style>
 :root{
+  /* responsiiviset fonttikoot – skaalautuvat näytön leveyden mukaan */
+  --f-base:clamp(.8rem, 1vw + .6rem, 1rem);
+  --f-h2:clamp(1.6rem, 2.5vw + 1rem, 2.6rem);
   --gap:.7rem;
-  --f-base:clamp(.8rem,1vw+.6rem,1rem);
-  --f-h2:clamp(1.6rem,2.5vw+1rem,2.6rem);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{
   font-family:Arial,Helvetica,sans-serif;
   background:url('https://wallpapers.com/images/hd/simple-dark-hzsjbqjg35ak8rtw.jpg') center/cover fixed;
   color:#fff;
-  padding-top:64px;          /* topbar */
-  padding-bottom:500px;      /* bottomBar */
+  padding-top:64px;               /* topbarin korkeus */
+  padding-bottom:600px;           /* tilaa bottomBarille */
 }
 
-/*── TOPBAR ─────────────────────────────────────────*/
+/*── TOPBAR ───────────────────────────*/
 #topbar{
   position:fixed;top:0;left:50%;transform:translateX(-50%);
-  width:min(92%,1200px);
-  display:grid;grid-template-columns:auto auto 1fr auto auto;
-  align-items:center;gap:var(--gap);
+  width:min(90%,1200px);          /* max 1200px, muuten prosentuaalinen */
+  display:flex;justify-content:space-between;align-items:center;
   padding:.6rem 0;z-index:1000;
 }
-#topbar::after{
-  content:'';position:absolute;left:0;bottom:0;width:100%;height:3px;
-  background:linear-gradient(to right,transparent,rgba(255,255,255,.9) 50%,transparent)
-}
+#topbar::after{content:'';position:absolute;left:0;bottom:0;width:100%;height:3px;
+  background:linear-gradient(to right,transparent,rgba(255,255,255,.9) 50%,transparent)}
+.left-group,.right-group{display:flex;align-items:center;gap:var(--gap)}
 #logo{width:clamp(28px,4vw,34px);height:clamp(28px,4vw,34px);border-radius:6px;
       background:url('https://cdn.dribbble.com/userupload/17064056/file/original-23909ae05b7ad399e60a61467cca821f.jpg?resize=400x0') center/cover}
-#title{font-size:var(--f-base);font-weight:600;white-space:nowrap}
-
-nav{display:flex;gap:var(--gap);flex-wrap:wrap}
+#title{font-size:var(--f-base);font-weight:600;white-space:nowrap; margin-right: .6rem;} /* added margin-right */
 .nav-btn{background:none;border:none;color:#fff;font-size:var(--f-base);
          padding:.35rem .7rem;cursor:pointer}
 .nav-btn:hover,.nav-btn.selected{color:#f87171}
 
-/* valikon burger pienille näytöille */
-#burger{display:none;background:none;border:none;font-size:1.6rem;color:#fff;cursor:pointer}
-/* oikea ryhmä */
-.right{display:flex;align-items:center;gap:var(--gap)}
 #imageButton{width:clamp(30px,4vw,34px);height:clamp(30px,4vw,34px);
              border-radius:50%;border:2px solid #fff;background:#fff;
              display:flex;justify-content:center;align-items:center;cursor:pointer}
@@ -57,38 +48,37 @@ nav{display:flex;gap:var(--gap);flex-wrap:wrap}
           font-size:var(--f-base);padding:.4rem .9rem;cursor:pointer}
 #loginBtn:hover{background:#e86e05}
 
-/*── CONTENT ─────────────────────────────────────────*/
-main{padding:2rem 4vw;text-align:center}
+/*── CONTENT ──────────────────────────*/
+#content{padding:2rem 4vw;text-align:center}
 .panel{display:none;max-width:100%;margin:auto}
 .panel.active{display:block}
 .panel h2{font-size:var(--f-h2);margin:clamp(1.2rem,4vw,2.5rem) 0 1.5rem}
 
 #youtube-box{display:flex;justify-content:center}
-#youtube-box iframe{
-  width:100%;max-width:800px;height:clamp(200px,50vw,450px);border:none}
+#youtube-box iframe{width:100%;max-width:800px;height:clamp(200px,50vw,450px);border:none}
 
-/* download */
+/* DOWNLOAD section */
 .dl-row{
   display:flex;flex-wrap:wrap;gap:var(--gap);justify-content:center;align-items:flex-start;
   margin:clamp(20px,4vw,40px) auto;
-  background:#ffffff33;border-radius:10px;
-  padding:clamp(12px,3vw,18px);
-  max-width:min(90vw,760px)
+  background:#ffffff33;border-radius:10px;padding:clamp(12px,3vw,18px);
+  max-width:min(90vw,760px);
 }
 .dl-info{flex:1;min-width:240px}
-.dl-info h3{font-size:clamp(1.8rem,4vw,3rem);margin-bottom:10px}
+.dl-info h3{font-size:clamp(1.8rem,4vw,3rem);margin:0 0 .6rem}
 .dl-info p{font-size:var(--f-base);margin-bottom:1rem}
-.dl-thumb{width:clamp(260px,45vw,340px);height:clamp(180px,38vw,290px);
-          border-radius:10px;
-          background:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4wlpHYMSWxzp2pdXuE6dmIy0GrpfNhPa76Q&s') center/cover}
+.dl-thumb{
+  width:clamp(260px,45vw,340px);height:clamp(180px,38vw,290px);
+  border-radius:10px;background:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4wlpHYMSWxzp2pdXuE6dmIy0GrpfNhPa76Q&s') center/cover}
 .btn-row{display:flex;gap:var(--gap);flex-wrap:wrap;justify-content:center}
-.btn-download,.btn-more{padding:.5rem 1.2rem;border:none;border-radius:8px;font-size:var(--f-base);cursor:pointer}
+.btn-download,.btn-more{padding:.5rem 1.2rem;border:none;border-radius:8px;
+                        font-size:var(--f-base);cursor:pointer}
 .btn-download{background:#22c55e;color:#fff}
 .btn-download:hover{background:#16a34a}
 .btn-more{background:#374151;color:#fff}
 .btn-more:hover{background:#4b5563}
 
-/*── BOTTOM BAR ──────────────────────────────────────*/
+/*── BOTTOM BAR ───────────────────────*/
 #bottomBar{
   background:#1f2937cc;color:#fff;padding:34px 1rem;
   position:fixed;left:50%;transform:translateX(-50%);
@@ -97,39 +87,33 @@ main{padding:2rem 4vw;text-align:center}
 #bottomBar a{color:#9b4dff;text-decoration:none;font-size:var(--f-base)}
 #bottomBar a:hover{color:#c08dff}
 #copyright{display:block;margin-top:18px;font-size:.75rem;text-align:center}
-
-/*── MEDIA QUERIES ───────────────────────────────────*/
-@media(max-width:600px){
-  nav{display:none}
-  #burger{display:block}
-}
 </style>
 </head>
 <body>
 
 <header id="topbar">
-  <button id="burger">&#9776;</button>
-  <div id="logo"></div>
-  <span id="title">Gabys website</span>
+  <div class="left-group">
+    <div id="logo" aria-label="Logo"></div>
+    <span id="title">Gabys website</span>
 
-  <nav id="navBtns">
-    <button id="homeBtn"     class="nav-btn selected">Home</button>
-    <button id="downloadBtn" class="nav-btn">Download</button>
-    <button id="feedbackBtn" class="nav-btn">Feedback</button>
-  </nav>
+    <div id="navBtns">
+      <button id="homeBtn"     class="nav-btn selected">Home</button>
+      <button id="downloadBtn" class="nav-btn">Download</button>
+      <button id="feedbackBtn" class="nav-btn">Feedback</button>
+    </div>
+  </div>
 
-  <div class="right">
-    <button id="imageButton" aria-label="Discord"
-            onclick="location='https://discord.com'">
+  <div class="right-group">
+    <button id="imageButton" aria-label="Discord" onclick="open('https://discord.com','_blank')">
       <img src="https://media.lordicon.com/icons/wired/gradient/2566-logo-discord.gif" alt="">
     </button>
     <button id="loginBtn">Log in</button>
   </div>
 </header>
 
-<main>
+<main id="content">
   <section id="pane1" class="panel active">
-    <h2>service home screen</h2>
+    <h2>hello, gabys service home screen</h2>
     <div id="youtube-box">
       <iframe src="https://www.youtube.com/embed/i8oqrucfXQo" allowfullscreen></iframe>
     </div>
@@ -146,7 +130,7 @@ main{padding:2rem 4vw;text-align:center}
           <button class="btn-more">Read more</button>
         </div>
       </div>
-      <div class="dl-thumb"></div>
+      <div class="dl-thumb" aria-label="App preview"></div>
     </div>
   </section>
 </main>
@@ -157,24 +141,21 @@ main{padding:2rem 4vw;text-align:center}
   <span id="copyright">© 2025 Gabys Website</span>
 </div>
 
-<!-- minimimäärä JS vain näkymien vaihtoon & burgerille -->
 <script>
-const panes={homeBtn:'pane1',downloadBtn:'pane2'};
-for(const [btnId,paneId] of Object.entries(panes)){
-  document.getElementById(btnId).onclick=({target})=>{
-    document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id===paneId));
-    document.querySelectorAll('.nav-btn').forEach(b=>b.classList.toggle('selected',b===target));
-    scrollTo({top:0,behavior:'smooth'});
-  };
-}
-feedbackBtn.onclick=()=>location='Feedback.html';
+const switchPane=(btn,pane)=>{ 
+  document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id===pane));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.toggle('selected',b===btn));
+  scrollTo({top:0,behavior:'smooth'}); 
+};
+homeBtn     .onclick=()=>switchPane(homeBtn    ,'pane1');
+downloadBtn .onclick=()=>switchPane(downloadBtn,'pane2');
+feedbackBtn .onclick=()=>location.href='Feedback.html';
 
+const bottomBar=document.getElementById('bottomBar');
 addEventListener('scroll',()=>{
-  const d=document.documentElement.scrollHeight-innerHeight-scrollY;
-  bottomBar.style.bottom=d<250?'0':'-280px';
+  const dist=document.documentElement.scrollHeight-innerHeight-scrollY;
+  bottomBar.style.bottom=dist<250?'0':'-280px';
 });
-
-burger.onclick=()=>navBtns.style.display=navBtns.style.display?'':'flex';
 </script>
 </body>
 </html>
