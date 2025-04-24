@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Gabys website</title>
+
+<!-- Favicon (kuva, joka näkyy selaimen yläkulmassa) -->
+<link rel="icon" href="https://cdn.dribbble.com/userupload/17064056/file/original-23909ae05b7ad399e60a61467cca821f.jpg?resize=400x0" type="image/jpeg">
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  padding-top:64px;padding-bottom:700px;
+  background:url('https://wallpapers.com/images/hd/simple-dark-hzsjbqjg35ak8rtw.jpg') center/cover fixed;
+  color:#fff;
+}
+
+/*── TOPBAR ───────────────────────────*/
+#topbar{
+  position:fixed;top:0;left:50%;transform:translateX(-50%);
+  width:80%;                             /* 10 % tyhjää reunoille */
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.6rem 0;background:transparent;z-index:1000;
+}
+#topbar::after{                          /* kirkas keskeltä, häviää reunoihin */
+  content:'';position:absolute;left:0;bottom:0;width:100%;height:3px;
+  background:linear-gradient(to right,
+             transparent 0%,rgba(255,255,255,.9) 50%,transparent 100%);
+}
+
+/* vasen ryhmä ─ logo, otsikko, nav‑napit */
+.left-group{display:flex;align-items:center;gap:10px}
+#logo{
+  width:34px;height:34px;border-radius:6px;
+  background:url('https://cdn.dribbble.com/userupload/17064056/file/original-23909ae05b7ad399e60a61467cca821f.jpg?resize=400x0') center/cover;
+}
+#title{font-size:1.05rem;font-weight:600;white-space:nowrap}
+#navBtns{display:flex;gap:12px;margin-left:10px}
+.nav-btn{
+  background:none;border:none;color:#fff;font-size:.95rem;
+  padding:.4rem .6rem;cursor:pointer;transition:color .25s;
+}
+.nav-btn:hover,.nav-btn.selected{color:#f87171}
+
+/* oikea ryhmä ─ discord‑ikoni + log in */
+.right-group{display:flex;align-items:center;gap:12px}
+#imageButton{
+  width:34px;height:34px;border-radius:50%;border:2px solid #fff;
+  background:#fff;display:flex;justify-content:center;align-items:center;cursor:pointer
+}
+#imageButton img{width:16px;height:16px}
+#loginBtn{
+  background:#ff7b10;border:none;border-radius:8px;color:#fff;
+  font-size:.95rem;padding:.45rem 1rem;cursor:pointer;transition:background .25s
+}
+#loginBtn:hover{background:#e86e05}
+
+/*── CONTENT ──────────────────────────*/
+#content{padding:2rem;text-align:center}
+.panel{display:none;max-width:850px;margin:auto}
+.panel.active{display:block}
+
+/* HOME */
+#pane1 h2{font-size:2.6rem;margin:2.5rem 0 2rem}
+#youtube-box{display:flex;justify-content:center}
+#youtube-box iframe{width:100%;max-width:760px;height:420px;border:none}
+
+/* DOWNLOAD */
+#pane2 h2{font-size:2.4rem;margin:2rem 0}
+.dl-row{display:flex;gap:20px;justify-content:center;align-items:center;
+        margin:40px auto;background:#ffffff33;border-radius:10px;padding:18px;max-width:760px}
+.dl-info{flex:1}
+.dl-info h3{font-size:3rem;margin-bottom:10px}
+.dl-info p{font-size:1rem;margin-bottom:20px}
+.dl-thumb{width:340px;height:290px;border-radius:10px;
+  background:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4wlpHYMSWxzp2pdXuE6dmIy0GrpfNhPa76Q&s') center/cover}
+.btn-row{display:flex;gap:10px;justify-content:center}
+.btn-download,.btn-more{padding:.6rem 1.4rem;border:none;border-radius:8px;font-size:.95rem;cursor:pointer}
+.btn-download{background:#22c55e;color:#fff}
+.btn-download:hover{background:#16a34a}
+.btn-more{background:#374151;color:#fff}
+.btn-more:hover{background:#4b5563}
+
+/*── BOTTOM BAR ───────────────────────*/
+#bottomBar{
+  background:#1f2937cc;color:#fff;padding:44px 1.2rem;
+  position:fixed;left:50%;transform:translateX(-50%);
+  width:max-content;bottom:-320px;transition:bottom .5s;border-radius:10px
+}
+#bottomBar h2{text-align:center;margin-bottom:6px;font-size:1.3rem}
+#bottomBar a{color:#9b4dff;text-decoration:none;font-size:.95rem}
+#bottomBar a:hover{color:#c08dff}
+#copyright{display:block;margin-top:18px;font-size:.75rem;text-align:center}
+</style>
+</head>
+<body>
+
+<header id="topbar">
+  <!-- vasen 10 % sisäviivan alkuun -->
+  <div class="left-group">
+    <div id="logo"></div>
+    <span id="title">Gabys website</span>
+
+    <div id="navBtns">
+      <button id="homeBtn"     class="nav-btn selected">Home</button>
+      <button id="downloadBtn" class="nav-btn">Download</button>
+      <button id="feedbackBtn" class="nav-btn">Feedback</button>
+    </div>
+  </div>
+
+  <!-- oikea 10 % sisäviivan loppuun -->
+  <div class="right-group">
+    <button id="imageButton" onclick="window.open('https://discord.com','_blank')">
+      <img src="https://media.lordicon.com/icons/wired/gradient/2566-logo-discord.gif" alt="discord">
+    </button>
+    <button id="loginBtn">Log in</button>
+  </div>
+</header>
+
+<main id="content">
+  <section id="pane1" class="panel active">
+    <h2>gabys service home screen</h2>
+    <div id="youtube-box">
+      <iframe src="https://www.youtube.com/embed/i8oqrucfXQo" allowfullscreen></iframe>
+    </div>
+  </section>
+
+  <section id="pane2" class="panel">
+    <h2>Download</h2>
+    <div class="dl-row">
+      <div class="dl-info">
+        <h3>App</h3>
+        <p>Custom example why you need try this gabys new application — download now!</p>
+        <div class="btn-row">
+          <button class="btn-download">Download</button>
+          <button class="btn-more">Read more</button>
+        </div>
+      </div>
+      <div class="dl-thumb"></div>
+    </div>
+  </section>
+</main>
+
+<div id="bottomBar">
+  <h2>Support</h2>
+  <a href="file:///C:/Users/Eemil/Desktop/sivusto/Feedback.html">Feedback</a> | 
+  <a href="https://discord.com">Discord</a>
+  <span id="copyright">© 2025 Gabys Website</span>
+</div>
+
+<script>
+function switchPane(btnId,paneId){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id===paneId));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.toggle('selected',b.id===btnId));
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+homeBtn.onclick     = ()=>switchPane('homeBtn','pane1');
+downloadBtn.onclick = ()=>switchPane('downloadBtn','pane2');
+feedbackBtn.onclick = ()=>window.location.href='file:///C:/Users/Eemil/Desktop/sivusto/Feedback.html';
+
+const bottomBar=document.getElementById('bottomBar');
+window.addEventListener('scroll',()=>{
+  const dist=document.documentElement.scrollHeight-window.innerHeight-window.scrollY;
+  bottomBar.style.bottom = dist<250 ? '0' : '-320px';
+});
+</script>
+
+</body>
+</html>
